@@ -3,6 +3,6 @@
  */
 public class TripCalculator {
 
-    // TODO: implement me :)
+    // TODO: implement me :) bla bla
 
 }
