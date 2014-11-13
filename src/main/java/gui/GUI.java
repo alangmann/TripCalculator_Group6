@@ -1,5 +1,7 @@
 package gui;
 
+import oracle.jrockit.jfr.JFR;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +16,7 @@ public class GUI extends JFrame
         initComponents();
         setSize(400, 300);
         setLocationRelativeTo(this);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void initComponents()
