@@ -8,4 +8,9 @@ public class TripCalculator {
 
     }
 
+    public void hallo()
+    {
+        System.out.println("Hello!");
+    }
+
 }
