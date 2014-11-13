@@ -8,5 +8,6 @@ public class TripCalculatorTest {
     @Test
     public void testDummy() {
         assertTrue(true);
+        System.out.println("lalala");
     }
 }
