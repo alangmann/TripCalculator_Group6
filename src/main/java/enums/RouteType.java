@@ -9,4 +9,5 @@ public enum RouteType
     HIGHWAY,
     COUNTRYROAD,
     GRAVELROAD;
+
 }
