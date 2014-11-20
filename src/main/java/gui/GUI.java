@@ -4,6 +4,7 @@ import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
 
 /**
  * Created by Jule on 13.11.2014.
@@ -17,6 +18,7 @@ public class GUI extends JFrame
         setSize(400, 300);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     private void initComponents()
