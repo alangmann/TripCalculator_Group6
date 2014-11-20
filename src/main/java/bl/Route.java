@@ -12,4 +12,42 @@ public class Route
     private double specialFee;
     private RouteType typeOfRoute;
 
+    public Route(double distance, double slope, double specialFee, RouteType typeOfRoute) {
+        this.distance = distance;
+        this.slope = slope;
+        this.specialFee = specialFee;
+        this.typeOfRoute = typeOfRoute;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getSlope() {
+        return slope;
+    }
+
+    public void setSlope(double slope) {
+        this.slope = slope;
+    }
+
+    public double getSpecialFee() {
+        return specialFee;
+    }
+
+    public void setSpecialFee(double specialFee) {
+        this.specialFee = specialFee;
+    }
+
+    public RouteType getTypeOfRoute() {
+        return typeOfRoute;
+    }
+
+    public void setTypeOfRoute(RouteType typeOfRoute) {
+        this.typeOfRoute = typeOfRoute;
+    }
 }
