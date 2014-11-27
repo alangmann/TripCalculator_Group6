@@ -49,7 +49,7 @@ public class GUI extends JFrame
         bg_vehicle.add(rb_car);
         bg_vehicle.add(rb_truck);
 
-        System.out.println("hallo");
+
 
         //Adding Components
         cont.add(panel_main, BorderLayout.CENTER);
