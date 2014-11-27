@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class Calculator {
     private double CO2_Consumption_Diesel;
     private double CO2_Consumption_Petrol;
-
+    private LinkedList<Route> routes = new LinkedList<Route>();
 
     public double getCO2_Consumption_Diesel() {
         return CO2_Consumption_Diesel;
@@ -29,7 +29,7 @@ public class Calculator {
         this.CO2_Consumption_Petrol = CO2_Consumption_Petrol;
     }
 
-    public double caculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle)  {
+    public double calculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle)  {
         double distance = route.getDistance();
         double factor;
         double co2Consumption=0;
@@ -51,7 +51,7 @@ public class Calculator {
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
 
     }
-    private LinkedList<Route> routes = new LinkedList<Route>();
+
     public void loadSpecifications() throws IOException
     {
         String pfad = System.getProperty("user.dir") + File.separator
