@@ -37,7 +37,7 @@ public class Calculator {
 
     public void loadSpecifications() throws IOException {
         String pfad = System.getProperty("user.dir") + File.separator
-                + "files" + File.separator +"route_specifications";
+                + "files" + File.separator +"route_specifications.csv";
         BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
         String line="";
         LinkedList specs = new LinkedList();
@@ -45,6 +45,7 @@ public class Calculator {
             while((line=br.readLine())!=null)
             {
                 specs.add(line);
+                System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
