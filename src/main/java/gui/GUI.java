@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.IOException;
 
 /**
  * Created by Jule on 13.11.2014.
@@ -24,6 +25,7 @@ public class GUI extends JFrame
     public GUI()
     {
         super("Trip Calculator");
+
         initComponents();
         setSize(545, 290);
         setLocationRelativeTo(this);
