@@ -27,7 +27,7 @@ public class Calculator {
         this.CO2_Consumption_Petrol = CO2_Consumption_Petrol;
     }
 
-    public void caculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle)  {
+    public double caculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle)  {
         double distance = route.getDistance();
         double factor;
 
@@ -36,6 +36,8 @@ public class Calculator {
             case COUNTRYROAD:factor = 1.2; break;
             case GRAVELROAD:factor = 2; break;
         }
+
+        return 0;
     }
 
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
