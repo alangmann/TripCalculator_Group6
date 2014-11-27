@@ -37,6 +37,14 @@ public class GUI extends JFrame
         panel_north = new JPanel(new GridLayout(1, 2, 10, 0));
         panel_north.setBorder(titledBorder);
 
+        panel_center = new JPanel(new GridLayout(1, 2));
+
+        panel_center_car = new JPanel();
+        panel_center_car.setBorder(new TitledBorder("Car"));
+
+        panel_center_truck = new JPanel();
+        panel_center_truck.setBorder(new TitledBorder("Truck"));
+
 
         //JRadioButtons & ButtonGroup
         bg_vehicle = new ButtonGroup();
@@ -56,10 +64,15 @@ public class GUI extends JFrame
 
         //Adding to Panel Main
         panel_main.add(panel_north, BorderLayout.NORTH);
+        panel_main.add(panel_center, BorderLayout.CENTER);
 
         //Adding to Panel North
         panel_north.add(rb_car);
         panel_north.add(rb_truck);
+
+        //Adding to Panel Center
+        panel_center.add(panel_center_car);
+        panel_center.add(panel_center_truck);
     }
 
     private void setDesign(String design)
@@ -82,6 +95,9 @@ public class GUI extends JFrame
     //JPanels
     private JPanel panel_main;
     private JPanel panel_north;
+    private JPanel panel_center;
+    private JPanel panel_center_car;
+    private JPanel panel_center_truck;
 
     //JRadioButtons
     private ButtonGroup bg_vehicle;
