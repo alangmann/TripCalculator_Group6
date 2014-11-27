@@ -51,11 +51,11 @@ public class Calculator {
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
 
     }
-
+    private LinkedList<Route> routes = new LinkedList<Route>();
     public void loadSpecifications() throws IOException
     {
         String pfad = System.getProperty("user.dir") + File.separator
-                + "files" + File.separator +"route_specifications.csv";
+                + "resources" + File.separator +"routes.csv";
         BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
         String line="";
         LinkedList specs = new LinkedList();
@@ -63,8 +63,9 @@ public class Calculator {
         {
             while((line=br.readLine())!=null)
             {
-                specs.add(line);
-                System.out.println(line);
+                String[] splits = line.split(";");
+                //45;96,8;CountryRoad;0
+
             }
         } catch (IOException e) {
             e.printStackTrace();
