@@ -141,7 +141,6 @@ public class GUI extends JFrame
             {
                 enableCarControls(true);
                 enableTruckControls(false);
-                System.out.println(getSize());
 
             } else if (actionCommand.equals("truck"))
             {
