@@ -6,7 +6,5 @@ package bl;
 public class Car extends Vehicle
 {
 
-    void bla() {
 
-    }
 }
