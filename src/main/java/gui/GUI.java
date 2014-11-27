@@ -41,6 +41,7 @@ public class GUI extends JFrame
         //JRadioButtons & ButtonGroup
         bg_vehicle = new ButtonGroup();
         rb_car = new JRadioButton("Car");
+        rb_car.setSelected(true);
         rb_car.setHorizontalAlignment(JRadioButton.CENTER);
         rb_truck = new JRadioButton("Truck");
         rb_truck.setHorizontalAlignment(JRadioButton.CENTER);
