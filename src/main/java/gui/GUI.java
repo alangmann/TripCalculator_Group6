@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 
 /**
@@ -13,6 +15,11 @@ import java.io.BufferedReader;
  */
 public class GUI extends JFrame
 {
+    private String[] texts_car =
+            {
+                  "Fuel Consumption", "Fuel Type", "Cargo"
+            };
+
     public GUI()
     {
         super("Trip Calculator");
@@ -39,7 +46,7 @@ public class GUI extends JFrame
 
         panel_center = new JPanel(new GridLayout(1, 2));
 
-        panel_center_car = new JPanel();
+        panel_center_car = new JPanel(new GridLayout(texts_car.length, 2, 0, 20));
         panel_center_car.setBorder(new TitledBorder("Car"));
 
         panel_center_truck = new JPanel();
@@ -49,15 +56,33 @@ public class GUI extends JFrame
         //JRadioButtons & ButtonGroup
         bg_vehicle = new ButtonGroup();
         rb_car = new JRadioButton("Car");
+        rb_car.addActionListener(new MyActionListener());
+        rb_car.setActionCommand("car");
         rb_car.setSelected(true);
         rb_car.setHorizontalAlignment(JRadioButton.CENTER);
         rb_truck = new JRadioButton("Truck");
+        rb_truck.setActionCommand("truck");
+        rb_truck.addActionListener(new MyActionListener());
         rb_truck.setHorizontalAlignment(JRadioButton.CENTER);
 
         bg_vehicle.add(rb_car);
         bg_vehicle.add(rb_truck);
 
+        //JLabels
+        lbs_car = new JLabel[texts_car.length];
+        tfs_car = new JTextField[texts_car.length];
 
+        for (int i = 0; i < texts_car.length; i++)
+        {
+            JLabel lb = new JLabel(texts_car[i]);
+            JTextField tf = new JTextField();
+
+            lbs_car[i] = lb;
+            tfs_car[i] = tf;
+
+            panel_center_car.add(lbs_car[i]);
+            panel_center_car.add(tfs_car[i]);
+        }
 
         //Adding Components
         cont.add(panel_main, BorderLayout.CENTER);
@@ -75,6 +100,21 @@ public class GUI extends JFrame
         panel_center.add(panel_center_truck);
     }
 
+    private void enableCarControls(boolean enable)
+    {
+        for (int i = 0; i < tfs_car.length; i++)
+        {
+            tfs_car[i].setText("");
+            tfs_car[i].setEnabled(enable);
+            panel_center_car.setEnabled(enable);
+        }
+    }
+
+    private void enableTruckControls(boolean enable)
+    {
+        panel_center_truck.setEnabled(false);
+    }
+
     private void setDesign(String design)
     {
         try
@@ -84,6 +124,26 @@ public class GUI extends JFrame
         } catch (Exception ex)
         {
             System.out.println("Error in GUI: GUI(): " + ex.getMessage());
+        }
+    }
+
+    class MyActionListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            String actionCommand = e.getActionCommand();
+
+            if (actionCommand.equals("car"))
+            {
+                enableCarControls(true);
+                enableTruckControls(false);
+
+            } else if (actionCommand.equals("truck"))
+            {
+                enableCarControls(false);
+                enableTruckControls(true);
+            }
         }
     }
 
@@ -106,6 +166,16 @@ public class GUI extends JFrame
 
     //TitledBorder
     private TitledBorder titledBorder;
+
+    //JLabels
+    private JLabel[] lbs_car;
+    private JLabel[] lbs_truck;
+
+    //JTextFields
+    private JTextField[] tfs_car;
+    private JTextField[] tfs_truck;
+
+
 
 
 }
