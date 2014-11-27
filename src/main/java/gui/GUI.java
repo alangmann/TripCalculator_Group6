@@ -22,6 +22,11 @@ public class GUI extends JFrame
                   "Fuel Consumption", "Fuel Type", "Cargo"
             };
 
+    private String[] texts_truck =
+            {
+                  "Fuel Consumption", "Fuel Type", "Cargo", "Axles", "adBlue"
+            };
+
     public GUI()
     {
         super("Trip Calculator");
