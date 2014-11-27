@@ -1,5 +1,7 @@
 package bl;
 
+import enums.FuelType;
+
 import java.io.*;
 import java.util.LinkedList;
 
@@ -7,8 +9,8 @@ import java.util.LinkedList;
  * Created by dominik on 20.11.2014.
  */
 public class Calculator {
-    public double CO2_Consumption_Diesel;
-    public double CO2_Consumption_Petrol;
+    private double CO2_Consumption_Diesel;
+    private double CO2_Consumption_Petrol;
 
 
     public double getCO2_Consumption_Diesel() {
@@ -30,6 +32,7 @@ public class Calculator {
     public double caculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle)  {
         double distance = route.getDistance();
         double factor;
+        double co2Consumption=0;
 
         switch(route.getTypeOfRoute()) {
             case HIGHWAY:factor = 1; break;
@@ -37,7 +40,12 @@ public class Calculator {
             case GRAVELROAD:factor = 2; break;
         }
 
-        return 0;
+        switch (vehicle.getTypeOfFuel()) {
+            case PATROL: co2Consumption=0.0265; break;
+            case DIESEL: co2Consumption=0.0236; break;
+        }
+
+        return distance*co2Consumption;
     }
 
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
