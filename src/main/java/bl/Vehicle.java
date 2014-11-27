@@ -11,6 +11,12 @@ public class Vehicle
     private int cargo;
     private FuelType typeOfFuel;
 
+    public Vehicle(double averageConsumption, int cargo, FuelType typeOfFuel) {
+        this.averageConsumption = averageConsumption;
+        this.cargo = cargo;
+        this.typeOfFuel = typeOfFuel;
+    }
+
     public double getAverageConsumption() {
         return averageConsumption;
     }
