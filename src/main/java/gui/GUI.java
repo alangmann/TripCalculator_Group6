@@ -1,5 +1,6 @@
 package gui;
 
+import bl.RouteBL;
 import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class GUI extends JFrame
     {
         super("Trip Calculator");
         initComponents();
-        setSize(400, 300);
+        setSize(545, 290);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDesign("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -138,6 +139,7 @@ public class GUI extends JFrame
             {
                 enableCarControls(true);
                 enableTruckControls(false);
+                System.out.println(getSize());
 
             } else if (actionCommand.equals("truck"))
             {
