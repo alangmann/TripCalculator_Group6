@@ -34,7 +34,6 @@ public class GUI extends JFrame
 
         titledBorder = new TitledBorder("Type of Vehicle");
         titledBorder.setTitleJustification(TitledBorder.CENTER);
-
         panel_north = new JPanel(new GridLayout(1, 2, 10, 0));
         panel_north.setBorder(titledBorder);
 
