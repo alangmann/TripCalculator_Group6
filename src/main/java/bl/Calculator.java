@@ -11,7 +11,6 @@ import java.util.LinkedList;
 public class Calculator {
     private double CO2_Consumption_Diesel;
     private double CO2_Consumption_Petrol;
-    private LinkedList<Route> routes = new LinkedList<Route>();
 
     public double getCO2_Consumption_Diesel() {
         return CO2_Consumption_Diesel;
@@ -52,23 +51,5 @@ public class Calculator {
 
     }
 
-    public void loadSpecifications() throws IOException
-    {
-        String pfad = System.getProperty("user.dir") + File.separator
-                + "resources" + File.separator +"routes.csv";
-        BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
-        String line="";
-        LinkedList specs = new LinkedList();
-        try
-        {
-            while((line=br.readLine())!=null)
-            {
-                String[] splits = line.split(";");
-                //45;96,8;CountryRoad;0
 
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
