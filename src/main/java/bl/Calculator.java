@@ -1,7 +1,7 @@
 package bl;
 
 import enums.FuelType;
-
+import enums.RouteType;
 import java.io.*;
 import java.util.LinkedList;
 
@@ -28,12 +28,21 @@ public class Calculator {
         this.CO2_Consumption_Petrol = CO2_Consumption_Petrol;
     }
 
-    public double calculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle) throws IllegalArgumentException  {
+    public double calculateCo2Consumption(Route route, Vehicle vehicle) throws IllegalArgumentException  {
         if (route.getDistance() < 0) throw new IllegalArgumentException("Wrong Distance!");
 
         double distance = route.getDistance();
         double co2Consumption=0;
         double slope=route.getSlope();
+        double factoofroutetype=1;
+        switch(route.getTypeOfRoute())
+        {
+            case HIGHWAY:
+                break;
+            case COUNTRYROAD: factoofroutetype=1.2; break;
+            case GRAVELROAD: factoofroutetype=2;
+                break;
+        }
         if(slope<-5)
         {
             return 0;
@@ -44,7 +53,7 @@ public class Calculator {
             case DIESEL: co2Consumption=0.0236; break;
         }
 
-        return distance*co2Consumption*slope;
+        return distance*co2Consumption*slope*factoofroutetype;
     }
 
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
