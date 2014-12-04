@@ -82,8 +82,8 @@ public class Calculator {
             slope=1;
 
         switch (truck.getTypeOfFuel()) {
-            case PATROL: co2Consumption=0.0265; break;
-            case DIESEL: co2Consumption=0.0236; break;
+            case PATROL: co2Consumption=0.0265*0.1; break;
+            case DIESEL: co2Consumption=0.0236*0.1; break;
         }
 
         double consumption= distance*co2Consumption*slope*factoofroutetype;
