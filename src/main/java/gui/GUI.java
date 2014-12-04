@@ -5,7 +5,6 @@ import bl.Car;
 import bl.Route;
 import bl.RouteBL;
 import enums.FuelType;
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +12,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -41,7 +39,7 @@ public class GUI extends JFrame
         super("Trip Calculator");
         this.m_Calculator = new Calculator();
         initComponents();
-        setSize(545, 290);
+        setSize(545, 310);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDesign("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -86,7 +84,7 @@ public class GUI extends JFrame
         panel_center_car = new JPanel(new GridLayout(texts_car.length, 2, 0, 10));
         panel_center_car.setBorder(new TitledBorder("Car"));
 
-        panel_center_truck = new JPanel();
+        panel_center_truck = new JPanel(new GridLayout(texts_truck.length, 2, 0,0));
         panel_center_truck.setBorder(new TitledBorder("Truck"));
 
 
@@ -106,13 +104,17 @@ public class GUI extends JFrame
         bg_vehicle.add(rb_truck);
 
         //JTextFields
+        tf_car_cargo = new JTextField();
+        tf_car_consumption = new JTextField();
 
-        tf_cargo = new JTextField();
-        tf_consumption = new JTextField();
+        tf_truck_consumption = new JTextField();
+        tf_truck_axles = new JTextField();
+        tf_truck_cargo = new JTextField();
 
 
         //JLabels
         lbs_car = new JLabel[texts_car.length];
+        lbs_truck = new JLabel[texts_truck.length];
 
         for (int i = 0; i < texts_car.length; i++)
         {
@@ -120,20 +122,30 @@ public class GUI extends JFrame
             lbs_car[i] = lb;
         }
 
-        lb_co2_result = new JLabel("Result: ");
+        for (int i = 0; i < texts_truck.length; i++)
+        {
+            JLabel lb = new JLabel(texts_truck[i]);
+            lbs_truck[i] = lb;
+        }
 
+        lb_co2_result = new JLabel("Result: ");
 
         //JButton
         bt_calc = new JButton("Calculate");
         bt_calc.addActionListener(new MyActionListener());
 
+        //JCheckBox
+        checkBox_adBlue = new JCheckBox();
+        checkBox_adBlue.setSelected(false);
 
         //JComboBox
-        cb_fuelTypes = new JComboBox<FuelType>();
+        cb_car_fuelTypes = new JComboBox<FuelType>();
+        cb_truck_fuelTypes = new JComboBox<FuelType>();
 
         for (int i = 0; i < FuelType.values().length; i++)
         {
-          cb_fuelTypes.addItem(FuelType.values()[i]);
+          cb_car_fuelTypes.addItem(FuelType.values()[i]);
+          cb_truck_fuelTypes.addItem(FuelType.values()[i]);
         }
 
 
@@ -159,11 +171,25 @@ public class GUI extends JFrame
 
         //Adding to Panel Center Car
         panel_center_car.add(lbs_car[0]);
-        panel_center_car.add(tf_consumption);
+        panel_center_car.add(tf_car_consumption);
         panel_center_car.add(lbs_car[1]);
-        panel_center_car.add(cb_fuelTypes);
+        panel_center_car.add(cb_car_fuelTypes);
         panel_center_car.add(lbs_car[2]);
-        panel_center_car.add(tf_cargo);
+        panel_center_car.add(tf_car_cargo);
+
+        //Adding to Panel Center Truck
+        //"Fuel Consumption", "Fuel Type", "Cargo", "Axles", "adBlue"
+        panel_center_truck.add(lbs_truck[0]);
+        panel_center_truck.add(tf_truck_consumption);
+        panel_center_truck.add(lbs_truck[1]);
+        panel_center_truck.add(cb_truck_fuelTypes);
+        panel_center_truck.add(lbs_truck[2]);
+        panel_center_truck.add(tf_truck_cargo);
+        panel_center_truck.add(lbs_truck[3]);
+        panel_center_truck.add(tf_truck_axles);
+        panel_center_truck.add(lbs_truck[4]);
+        panel_center_truck.add(checkBox_adBlue);
+
     }
 
 
@@ -227,6 +253,9 @@ public class GUI extends JFrame
     private JRadioButton rb_car;
     private JRadioButton rb_truck;
 
+    //JCheckBoxes
+    private JCheckBox checkBox_adBlue;
+
     //TitledBorder
     private TitledBorder titledBorder;
 
@@ -234,16 +263,19 @@ public class GUI extends JFrame
     private JLabel[] lbs_car;
     private JLabel[] lbs_truck;
     private JLabel lb_co2_result;
-    private JLabel lb_consumption;
 
 
     //JTextFields
-    private JTextField tf_cargo;
-    private JTextField tf_consumption;
-    private JTextField[] tfs_truck;
+    private JTextField tf_car_cargo;
+    private JTextField tf_car_consumption;
+
+    private JTextField tf_truck_cargo;
+    private JTextField tf_truck_consumption;
+    private JTextField tf_truck_axles;
 
     //JComboBox
-    private JComboBox<FuelType> cb_fuelTypes;
+    private JComboBox<FuelType> cb_car_fuelTypes;
+    private JComboBox<FuelType> cb_truck_fuelTypes;
 
     //JButtons
     private JButton bt_calc;
