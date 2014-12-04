@@ -28,16 +28,12 @@ public class Calculator {
         this.CO2_Consumption_Petrol = CO2_Consumption_Petrol;
     }
 
-    public double calculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle)  {
+    public double calculateCo2ConsumptionBasedOnDistance(Route route, Vehicle vehicle) throws IllegalArgumentException  {
+        if (route.getDistance() < 0) throw new IllegalArgumentException("Wrong Distance!");
+
         double distance = route.getDistance();
-        double factor;
         double co2Consumption=0;
 
-        switch(route.getTypeOfRoute()) {
-            case HIGHWAY:factor = 1; break;
-            case COUNTRYROAD:factor = 1.2; break;
-            case GRAVELROAD:factor = 2; break;
-        }
 
         switch (vehicle.getTypeOfFuel()) {
             case PATROL: co2Consumption=0.0265; break;
