@@ -29,7 +29,8 @@ public class RouteBL {
         {
             while((line=br.readLine())!=null)
             {
-                line.replaceAll(",",".");
+                line=line.replaceAll(",",".");
+
                 String[] splits = line.split(";");
                 //45;96,8;CountryRoad;0
                 // public Route(double distance, double slope, double specialFee, RouteType typeOfRoute) {
