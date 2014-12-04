@@ -50,4 +50,10 @@ public class Route
     public void setTypeOfRoute(RouteType typeOfRoute) {
         this.typeOfRoute = typeOfRoute;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Distance: %d, Slope: %d, Special Fee: %d, Type: %s", distance, slope, specialFee, typeOfRoute);
+    }
 }

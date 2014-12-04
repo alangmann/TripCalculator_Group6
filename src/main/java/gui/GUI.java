@@ -1,5 +1,6 @@
 package gui;
 
+import bl.Route;
 import bl.RouteBL;
 import oracle.jrockit.jfr.JFR;
 
@@ -11,12 +12,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.LinkedList;
 
 /**
  * Created by Jule on 13.11.2014.
  */
 public class GUI extends JFrame
 {
+    private RouteBL routeBL;
+    private LinkedList<Route> routes = new LinkedList<Route>();
+
     private String[] texts_car =
             {
                   "Fuel Consumption", "Fuel Type", "Cargo"
@@ -30,12 +35,21 @@ public class GUI extends JFrame
     public GUI()
     {
         super("Trip Calculator");
-
         initComponents();
         setSize(545, 290);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDesign("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+
+
+        routeBL = new RouteBL();
+        try {
+            routeBL.loadRoute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void initComponents()

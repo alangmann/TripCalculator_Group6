@@ -11,11 +11,13 @@ import java.util.LinkedList;
 /**
  * Created by Veronika on 27.11.2014.
  */
-public class RouteBL {
+public class RouteBL
+{
     private LinkedList<Route> routes;
 
-    public RouteBL(LinkedList<Route> routes) {
-        this.routes = new LinkedList<Route>();
+    public RouteBL()
+    {
+        this.routes = routes;
     }
 
     public boolean loadRoute() throws IOException
@@ -35,7 +37,8 @@ public class RouteBL {
                 //45;96,8;CountryRoad;0
                 // public Route(double distance, double slope, double specialFee, RouteType typeOfRoute) {
                 //km;slope;routtype;special fee
-                if (splits[2].equals("Highway")) {
+                if (splits[2].equals("Highway"))
+                {
                     routes.add(new Route(Double.parseDouble(splits[0]), Double.parseDouble(splits[1]), Double.parseDouble(splits[3]), RouteType.HIGHWAY));
                 }
                 else if(splits[2].equals("CountryRoad"))
@@ -48,6 +51,8 @@ public class RouteBL {
                 }
 
             }
+
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;
