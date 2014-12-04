@@ -220,14 +220,25 @@ public class GUI extends JFrame
     }
 
     private void onCalculateCO2() {
-        //Type of vehicle, if true then car, else truck
-
         if (rb_car.isSelected()) {
-            int cargo = Integer.parseInt(this.tf_car_cargo.getText());
-            double consumption = Double.parseDouble(this.tf_car_consumption.getText());
-            FuelType fueltype = (FuelType)this.cb_car_fuelTypes.getSelectedItem();
+            try {
+                int cargo = Integer.parseInt(this.tf_car_cargo.getText());
+                double consumption = Double.parseDouble(this.tf_car_consumption.getText());
+                FuelType fueltype = (FuelType) this.cb_car_fuelTypes.getSelectedItem();
 
-            Car car = new Car(consumption, cargo, fueltype);
+                Car car = new Car(consumption, cargo, fueltype);
+
+                double sum = 0;
+                for (Route r : this.routes) {
+                    sum += this.m_Calculator.calculateCo2Consumption(r, car);
+                }
+
+                this.lb_co2_result.setText("Result: " + sum);
+            } catch(Exception e) {
+                this.lb_co2_result.setText("There was an error!");
+            }
+        }
+        else {
 
         }
 
