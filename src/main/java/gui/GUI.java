@@ -223,14 +223,13 @@ public class GUI extends JFrame
         //Type of vehicle, if true then car, else truck
 
         if (rb_car.isSelected()) {
-            int cargo = Integer.parseInt(this.tf_cargo.getText());
-            double consumption = Double.parseDouble(this.tf_consumption.getText());
-            FuelType fueltype = (FuelType)this.cb_fuelTypes.getSelectedItem();
+            int cargo = Integer.parseInt(this.tf_car_cargo.getText());
+            double consumption = Double.parseDouble(this.tf_car_consumption.getText());
+            FuelType fueltype = (FuelType)this.cb_car_fuelTypes.getSelectedItem();
 
             Car car = new Car(consumption, cargo, fueltype);
 
         }
-
 
 
     }
