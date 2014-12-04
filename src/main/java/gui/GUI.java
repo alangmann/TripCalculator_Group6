@@ -2,6 +2,7 @@ package gui;
 
 import bl.Route;
 import bl.RouteBL;
+import enums.FuelType;
 import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
@@ -73,9 +74,12 @@ public class GUI extends JFrame
         panel_north = new JPanel(new GridLayout(1, 2, 10, 0));
         panel_north.setBorder(titledBorder);
 
+        panel_south = new JPanel(new GridLayout(2, 1));
+
+
         panel_center = new JPanel(new GridLayout(1, 2));
 
-        panel_center_car = new JPanel(new GridLayout(texts_car.length, 2, 0, 20));
+        panel_center_car = new JPanel(new GridLayout(texts_car.length, 2, 0, 10));
         panel_center_car.setBorder(new TitledBorder("Car"));
 
         panel_center_truck = new JPanel();
@@ -97,21 +101,37 @@ public class GUI extends JFrame
         bg_vehicle.add(rb_car);
         bg_vehicle.add(rb_truck);
 
+        //JTextFields
+
+        tf_cargo = new JTextField();
+        tf_consumption = new JTextField();
+
+
         //JLabels
         lbs_car = new JLabel[texts_car.length];
-        tfs_car = new JTextField[texts_car.length];
 
         for (int i = 0; i < texts_car.length; i++)
         {
             JLabel lb = new JLabel(texts_car[i]);
-            JTextField tf = new JTextField();
-
             lbs_car[i] = lb;
-            tfs_car[i] = tf;
-
-            panel_center_car.add(lbs_car[i]);
-            panel_center_car.add(tfs_car[i]);
         }
+
+        lb_co2_result = new JLabel("Result: ");
+
+
+        //JButton
+        bt_calc = new JButton("Calculate");
+
+
+
+        //JComboBox
+        cb_fuelTypes = new JComboBox<FuelType>();
+
+        for (int i = 0; i < FuelType.values().length; i++)
+        {
+          cb_fuelTypes.addItem(FuelType.values()[i]);
+        }
+
 
         //Adding Components
         cont.add(panel_main, BorderLayout.CENTER);
@@ -119,25 +139,29 @@ public class GUI extends JFrame
         //Adding to Panel Main
         panel_main.add(panel_north, BorderLayout.NORTH);
         panel_main.add(panel_center, BorderLayout.CENTER);
+        panel_main.add(panel_south, BorderLayout.SOUTH);
 
         //Adding to Panel North
         panel_north.add(rb_car);
         panel_north.add(rb_truck);
 
+        //Adding to Panel South
+        panel_south.add(bt_calc);
+        panel_south.add(lb_co2_result);
+
         //Adding to Panel Center
         panel_center.add(panel_center_car);
         panel_center.add(panel_center_truck);
+
+        //Adding to Panel Center Car
+        panel_center_car.add(lbs_car[0]);
+        panel_center_car.add(tf_consumption);
+        panel_center_car.add(lbs_car[1]);
+        panel_center_car.add(cb_fuelTypes);
+        panel_center_car.add(lbs_car[2]);
+        panel_center_car.add(tf_cargo);
     }
 
-    private void enableCarControls(boolean enable)
-    {
-        for (int i = 0; i < tfs_car.length; i++)
-        {
-            tfs_car[i].setText("");
-            tfs_car[i].setEnabled(enable);
-            panel_center_car.setEnabled(enable);
-        }
-    }
 
     private void enableTruckControls(boolean enable)
     {
@@ -161,18 +185,7 @@ public class GUI extends JFrame
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            String actionCommand = e.getActionCommand();
 
-            if (actionCommand.equals("car"))
-            {
-                enableCarControls(true);
-                enableTruckControls(false);
-
-            } else if (actionCommand.equals("truck"))
-            {
-                enableCarControls(false);
-                enableTruckControls(true);
-            }
         }
     }
 
@@ -185,6 +198,7 @@ public class GUI extends JFrame
     private JPanel panel_main;
     private JPanel panel_north;
     private JPanel panel_center;
+    private JPanel panel_south;
     private JPanel panel_center_car;
     private JPanel panel_center_truck;
 
@@ -199,11 +213,20 @@ public class GUI extends JFrame
     //JLabels
     private JLabel[] lbs_car;
     private JLabel[] lbs_truck;
+    private JLabel lb_co2_result;
+    private JLabel lb_consumption;
+
 
     //JTextFields
-    private JTextField[] tfs_car;
+    private JTextField tf_cargo;
+    private JTextField tf_consumption;
     private JTextField[] tfs_truck;
 
+    //JComboBox
+    private JComboBox<FuelType> cb_fuelTypes;
+
+    //JButtons
+    private JButton bt_calc;
 
 
 
