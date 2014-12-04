@@ -16,7 +16,7 @@ public class RouteBLTest {
 
     @Before
     public void init() {
-        this.m_RouteBL = new RouteBL(new LinkedList<Route>());
+        this.m_RouteBL = new RouteBL();
     }
 
     @Test
