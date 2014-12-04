@@ -5,6 +5,7 @@ import bl.Route;
 import bl.Vehicle;
 import enums.FuelType;
 import enums.RouteType;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
@@ -25,7 +26,14 @@ public class TripCalculatorTest {
     }
 
     @Test
-    public void testIfDieselWithSlopeGreater5PercentReturnsZero() {
+    public void testIfPatrolWith20kmReturns0Point53WhenSlopeIs1Return0Point53() {
+        Vehicle vehicle = new Vehicle(1.1, 50, FuelType.PATROL);
+        Route route = new Route(20, 1, 0, RouteType.HIGHWAY);
+        assertThat(this.cal.calculateCo2Consumption(route, vehicle), equalTo(0.53));
+    }
+
+    @Test
+    public void testIfDieselWithSlopeLower5PercentReturnsZero() {
         Route route = new Route(12, -6, 0, RouteType.HIGHWAY);
         Vehicle veh = new Vehicle(12.2, 1, FuelType.DIESEL);
 
@@ -33,5 +41,11 @@ public class TripCalculatorTest {
         assertThat(erg, equalTo(0.0));
     }
 
+    @Test
+    public void testIfDieselWithSlope0Returns0Point2832() {
+        Route route = new Route(12, 0, 0, RouteType.HIGHWAY);
+        Vehicle veh = new Vehicle(12.2, 1, FuelType.DIESEL);
+        assertThat(cal.calculateCo2Consumption(route, veh), equalTo(0.2832));
+    }
 
 }

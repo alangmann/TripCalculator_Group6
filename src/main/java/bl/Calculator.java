@@ -32,7 +32,7 @@ public class Calculator {
         if (route.getDistance() < 0) throw new IllegalArgumentException("Wrong Distance!");
 
         double distance = route.getDistance();
-        double co2Consumption=0;
+        double co2Consumption=1;
         double slope=route.getSlope();
         double factoofroutetype=1;
         switch(route.getTypeOfRoute())
