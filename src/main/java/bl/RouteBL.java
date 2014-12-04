@@ -20,6 +20,14 @@ public class RouteBL
         this.routes = new LinkedList<Route>();
     }
 
+    public LinkedList<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(LinkedList<Route> routes) {
+        this.routes = routes;
+    }
+
     public boolean loadRoute() throws IOException
     {
         String pfad = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator
@@ -56,6 +64,7 @@ public class RouteBL
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+
         }
         return true;
     }
