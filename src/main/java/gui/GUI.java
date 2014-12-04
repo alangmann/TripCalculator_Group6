@@ -1,5 +1,7 @@
 package gui;
 
+import bl.Calculator;
+import bl.Car;
 import bl.Route;
 import bl.RouteBL;
 import enums.FuelType;
@@ -22,6 +24,7 @@ public class GUI extends JFrame
 {
     private RouteBL routeBL;
     private LinkedList<Route> routes = new LinkedList<Route>();
+    private Calculator m_Calculator;
 
     private String[] texts_car =
             {
@@ -36,6 +39,7 @@ public class GUI extends JFrame
     public GUI()
     {
         super("Trip Calculator");
+        this.m_Calculator = new Calculator();
         initComponents();
         setSize(545, 290);
         setLocationRelativeTo(this);
@@ -121,7 +125,7 @@ public class GUI extends JFrame
 
         //JButton
         bt_calc = new JButton("Calculate");
-
+        bt_calc.addActionListener(new MyActionListener());
 
 
         //JComboBox
@@ -185,8 +189,24 @@ public class GUI extends JFrame
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            onCalculateCO2();
+        }
+    }
+
+    private void onCalculateCO2() {
+        //Type of vehicle, if true then car, else truck
+
+        if (rb_car.isSelected()) {
+            int cargo = Integer.parseInt(this.tf_cargo.getText());
+            double consumption = Double.parseDouble(this.tf_consumption.getText());
+            FuelType fueltype = (FuelType)this.cb_fuelTypes.getSelectedItem();
+
+            Car car = new Car(consumption, cargo, fueltype);
 
         }
+
+
+
     }
 
     public static void main(String[] args)
