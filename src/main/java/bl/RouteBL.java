@@ -17,7 +17,7 @@ public class RouteBL
 
     public RouteBL()
     {
-        this.routes = routes;
+        this.routes = new LinkedList<Route>();
     }
 
     public boolean loadRoute() throws IOException

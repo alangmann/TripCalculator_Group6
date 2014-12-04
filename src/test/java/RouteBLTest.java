@@ -4,9 +4,6 @@
 import static org.hamcrest.CoreMatchers.equalTo;
 import bl.RouteBL;
 import bl.Route;
-import bl.Vehicle;
-import enums.FuelType;
-import enums.RouteType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

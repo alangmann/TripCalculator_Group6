@@ -16,12 +16,21 @@ public class TripCalculatorTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void testIfCalculateRouteWithDistanceMinusOneReturnsError() {
-        cal.calculateCo2ConsumptionBasedOnDistance(new Route(-1, 0, 0, RouteType.HIGHWAY), new Vehicle(6, 1, FuelType.DIESEL));
+        cal.calculateCo2Consumption(new Route(-1, 0, 0, RouteType.HIGHWAY), new Vehicle(6, 1, FuelType.DIESEL));
     }
 
     @Test
     public void testIfDieselWith10KmReturnsZeroKomma236() {
-        assertThat(this.cal.calculateCo2ConsumptionBasedOnDistance(new Route(10, 0, 0, RouteType.HIGHWAY), new Vehicle(6, 1, FuelType.DIESEL)), equalTo(0.236));
+        assertThat(this.cal.calculateCo2Consumption(new Route(10, 0, 0, RouteType.HIGHWAY), new Vehicle(6, 1, FuelType.DIESEL)), equalTo(0.236));
+    }
+
+    @Test
+    public void testIfDieselWithSlopeGreater5PercentReturnsZero() {
+        Route route = new Route(12, -6, 0, RouteType.HIGHWAY);
+        Vehicle veh = new Vehicle(12.2, 1, FuelType.DIESEL);
+
+        double erg = cal.calculateCo2Consumption(route, veh);
+        assertThat(erg, equalTo(0.0));
     }
 
 
