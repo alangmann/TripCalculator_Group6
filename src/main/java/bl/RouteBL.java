@@ -20,8 +20,9 @@ public class RouteBL {
 
     public boolean loadRoute() throws IOException
     {
-        String pfad = System.getProperty("user.dir") + File.separator
+        String pfad = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator
                 + "resources" + File.separator +"routes.csv";
+
         BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
         String line="";
         try
