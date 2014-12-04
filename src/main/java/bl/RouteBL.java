@@ -18,7 +18,7 @@ public class RouteBL {
         this.routes = routes;
     }
 
-    public void loadRoute() throws IOException
+    public boolean loadRoute() throws IOException
     {
         String pfad = System.getProperty("user.dir") + File.separator
                 + "resources" + File.separator +"routes.csv";
@@ -48,5 +48,6 @@ public class RouteBL {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return true;
     }
 }
