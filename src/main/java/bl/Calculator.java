@@ -33,14 +33,18 @@ public class Calculator {
 
         double distance = route.getDistance();
         double co2Consumption=0;
-
+        double slope=route.getSlope();
+        if(slope<-5)
+        {
+            return 0;
+        }
 
         switch (vehicle.getTypeOfFuel()) {
             case PATROL: co2Consumption=0.0265; break;
             case DIESEL: co2Consumption=0.0236; break;
         }
 
-        return distance*co2Consumption;
+        return distance*co2Consumption*slope;
     }
 
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
