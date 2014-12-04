@@ -47,6 +47,8 @@ public class Calculator {
         {
             return 0;
         }
+        if(slope==0)
+            slope=1;
 
         switch (vehicle.getTypeOfFuel()) {
             case PATROL: co2Consumption=0.0265; break;
