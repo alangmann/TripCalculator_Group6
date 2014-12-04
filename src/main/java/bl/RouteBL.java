@@ -20,10 +20,6 @@ public class RouteBL
         this.routes = new LinkedList<Route>();
     }
 
-    public LinkedList<Route> getRoutes() {
-        return routes;
-    }
-
     public void setRoutes(LinkedList<Route> routes) {
         this.routes = routes;
     }
@@ -67,5 +63,9 @@ public class RouteBL
 
         }
         return true;
+    }
+
+    public LinkedList<Route> getRoutes() {
+        return routes;
     }
 }

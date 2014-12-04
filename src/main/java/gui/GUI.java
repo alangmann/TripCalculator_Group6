@@ -49,6 +49,13 @@ public class GUI extends JFrame
             e.printStackTrace();
         }
 
+        routes = routeBL.getRoutes();
+
+        for(Route r : routes)
+        {
+            System.out.println(r.toString());
+        }
+
 
     }
 
