@@ -12,10 +12,10 @@ import java.util.LinkedList;
  * Created by Veronika on 27.11.2014.
  */
 public class RouteBL {
-    private LinkedList<Route> routes = new LinkedList<Route>();
+    private LinkedList<Route> routes;
 
     public RouteBL(LinkedList<Route> routes) {
-        this.routes = routes;
+        this.routes = new LinkedList<Route>();
     }
 
     public boolean loadRoute() throws IOException
@@ -29,6 +29,7 @@ public class RouteBL {
         {
             while((line=br.readLine())!=null)
             {
+                line.replaceAll(",",".");
                 String[] splits = line.split(";");
                 //45;96,8;CountryRoad;0
                 // public Route(double distance, double slope, double specialFee, RouteType typeOfRoute) {
