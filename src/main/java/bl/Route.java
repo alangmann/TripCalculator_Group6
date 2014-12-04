@@ -54,6 +54,6 @@ public class Route
     @Override
     public String toString()
     {
-        return String.format("Distance: %d, Slope: %d, Special Fee: %d, Type: %s", distance, slope, specialFee, typeOfRoute);
+        return String.format("Distance: %f, Slope: %f, Special Fee: %f, Type: %s", distance, slope, specialFee, typeOfRoute);
     }
 }
