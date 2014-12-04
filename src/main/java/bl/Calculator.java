@@ -55,7 +55,41 @@ public class Calculator {
             case DIESEL: co2Consumption=0.0236; break;
         }
 
-        return distance*co2Consumption*slope*factoofroutetype;
+        double consumption= distance*co2Consumption*slope*factoofroutetype;
+        return consumption;
+    }
+
+    public double calculateCo2ConsumptionTruck(Route route, Truck truck) throws IllegalArgumentException  {
+        if (route.getDistance() < 0) throw new IllegalArgumentException("Wrong Distance!");
+
+        double distance = route.getDistance();
+        double co2Consumption=1;
+        double slope=route.getSlope();
+        double factoofroutetype=1;
+        switch(route.getTypeOfRoute())
+        {
+            case HIGHWAY:
+                break;
+            case COUNTRYROAD: factoofroutetype=1.2; break;
+            case GRAVELROAD: factoofroutetype=2;
+                break;
+        }
+        if(slope<-5)
+        {
+            return 0;
+        }
+        if(slope==0)
+            slope=1;
+
+        switch (truck.getTypeOfFuel()) {
+            case PATROL: co2Consumption=0.0265; break;
+            case DIESEL: co2Consumption=0.0236; break;
+        }
+
+        double consumption= distance*co2Consumption*slope*factoofroutetype;
+        if(truck.isAdBlue())
+            consumption-=(consumption*0.07);
+        return consumption;
     }
 
     public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
