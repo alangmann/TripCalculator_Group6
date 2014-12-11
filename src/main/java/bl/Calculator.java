@@ -33,32 +33,41 @@ public class Calculator {
         else if (route == null) throw new IllegalArgumentException("Route is null!");
         else if (vehicle == null) throw new IllegalArgumentException("Vehicle is null");
 
-        double distance = route.getDistance();
-        double co2Consumption=1;
-        double slope=route.getSlope();
-        double factoofroutetype=1;
-        switch(route.getTypeOfRoute())
-        {
-            case HIGHWAY:
-                break;
-            case COUNTRYROAD: factoofroutetype=1.2; break;
-            case GRAVELROAD: factoofroutetype=2;
-                break;
-        }
-        if(slope<-5)
-        {
-            return 0;
-        }
-        if(slope==0)
-            slope=1;
+        if (vehicle instanceof Car) {
+            double distance = route.getDistance();
+            double co2Consumption = 1;
+            double slope = route.getSlope();
+            double factoofroutetype = 1;
+            switch (route.getTypeOfRoute()) {
+                case HIGHWAY:
+                    break;
+                case COUNTRYROAD:
+                    factoofroutetype = 1.2;
+                    break;
+                case GRAVELROAD:
+                    factoofroutetype = 2;
+                    break;
+            }
+            if (slope < -5) {
+                return 0;
+            }
+            if (slope == 0)
+                slope = 1;
 
-        switch (vehicle.getTypeOfFuel()) {
-            case PATROL: co2Consumption=0.0265; break;
-            case DIESEL: co2Consumption=0.0236; break;
-        }
+            switch (vehicle.getTypeOfFuel()) {
+                case PATROL:
+                    co2Consumption = 0.0265;
+                    break;
+                case DIESEL:
+                    co2Consumption = 0.0236;
+                    break;
+            }
 
-        double consumption= distance*co2Consumption*slope*factoofroutetype;
-        return consumption;
+            double consumption = distance * co2Consumption * slope * factoofroutetype;
+            return consumption;
+        } else if(vehicle instanceof Truck) {
+
+        }
     }
 
     public double calculateCo2ConsumptionTruck(Route route, Truck truck) throws IllegalArgumentException  {
