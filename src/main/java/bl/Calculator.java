@@ -33,19 +33,20 @@ public class Calculator {
         else if (route == null) throw new IllegalArgumentException("Route is null!");
         else if (vehicle == null) throw new IllegalArgumentException("Vehicle is null");
 
+        double distance = route.getDistance();
+        double co2Consumption=1;
+        double slope=route.getSlope();
+
         if (vehicle instanceof Car) {
-            double distance = route.getDistance();
-            double co2Consumption = 1;
-            double slope = route.getSlope();
-            double factoofroutetype = 1;
+            double factoOfRouteType = 1;
             switch (route.getTypeOfRoute()) {
                 case HIGHWAY:
                     break;
                 case COUNTRYROAD:
-                    factoofroutetype = 1.2;
+                    factoOfRouteType = 1.2;
                     break;
                 case GRAVELROAD:
-                    factoofroutetype = 2;
+                    factoOfRouteType = 2;
                     break;
             }
             if (slope < -5) {
@@ -63,10 +64,10 @@ public class Calculator {
                     break;
             }
 
-            double consumption = distance * co2Consumption * slope * factoofroutetype;
+            double consumption = distance * co2Consumption * slope * factoOfRouteType;
             return consumption;
         } else if(vehicle instanceof Truck) {
-
+            return 0;
         }
     }
 
