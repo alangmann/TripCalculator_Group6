@@ -50,6 +50,7 @@ public class Calculator {
         }
 
         if (vehicle instanceof Car) {
+
             if (slope < -5) {
                 return 0;
             }
@@ -63,6 +64,8 @@ public class Calculator {
                     co2Consumption = 0.0236;
                     break;
             }
+
+            co2Consumption*=vehicle.getAverageConsumption();
 
             double consumption = distance * co2Consumption * slope * factorOfRouteType;
             return consumption;
