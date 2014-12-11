@@ -1,9 +1,6 @@
 package gui;
 
-import bl.Calculator;
-import bl.Car;
-import bl.Route;
-import bl.RouteBL;
+import bl.*;
 import enums.FuelType;
 
 import javax.swing.*;
@@ -220,8 +217,9 @@ public class GUI extends JFrame
     }
 
     private void onCalculateCO2() {
+        try {
         if (rb_car.isSelected()) {
-            try {
+
                 int cargo = Integer.parseInt(this.tf_car_cargo.getText());
                 double consumption = Double.parseDouble(this.tf_car_consumption.getText());
                 FuelType fueltype = (FuelType) this.cb_car_fuelTypes.getSelectedItem();
@@ -234,14 +232,25 @@ public class GUI extends JFrame
                 }
 
                 this.lb_co2_result.setText("Result: " + sum);
-            } catch(Exception e) {
-                this.lb_co2_result.setText("There was an error!");
-            }
+
         }
         else {
+            int cargo = Integer.parseInt(this.tf_truck_cargo.getText());
+            double consumption = Double.parseDouble(this.tf_truck_consumption.getText());
+            FuelType fueltype = (FuelType) this.cb_truck_fuelTypes.getSelectedItem();
+            int axels = Integer.parseInt(this.tf_truck_axles.getText());
+            boolean b = this.checkBox_adBlue.isSelected();
+            Truck tr = new Truck(consumption,cargo,fueltype,axels,b);
+            double sum = 0;
+            for (Route r : this.routes) {
+                sum += this.m_Calculator.calculateCo2Consumption(r, tr);
+            }
 
+            this.lb_co2_result.setText("Result: " + sum);
         }
-
+        } catch(Exception e) {
+            this.lb_co2_result.setText("There was an error!");
+        }
 
     }
 
