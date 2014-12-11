@@ -31,6 +31,7 @@ public class RouteBL
 
         BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
         String line="";
+
         try
         {
             while((line=br.readLine())!=null)
