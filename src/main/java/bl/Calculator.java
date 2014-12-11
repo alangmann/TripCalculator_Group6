@@ -30,6 +30,8 @@ public class Calculator {
 
     public double calculateCo2Consumption(Route route, Vehicle vehicle) throws IllegalArgumentException  {
         if (route.getDistance() < 0) throw new IllegalArgumentException("Wrong Distance!");
+        else if (route == null) throw new IllegalArgumentException("Route is null!");
+        else if (vehicle == null) throw new IllegalArgumentException("Vehicle is null");
 
         double distance = route.getDistance();
         double co2Consumption=1;
