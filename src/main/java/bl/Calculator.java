@@ -35,7 +35,7 @@ public class Calculator {
 
         double distance = route.getDistance();
         double co2Consumption=1;
-        double slope=route.getSlope();
+        double slope=(route.getSlope()/100) / 100 + 1;
         double factorOfRouteType = 1;
 
         switch (route.getTypeOfRoute()) {
@@ -55,19 +55,19 @@ public class Calculator {
 
         switch (vehicle.getTypeOfFuel()) {
             case PATROL:
-                co2Consumption = 0.0265;
+                co2Consumption = 0.0236;
                 break;
             case DIESEL:
-                co2Consumption = 0.0236;
+                co2Consumption = 0.0265;
                 break;
         }
 
         if (vehicle instanceof Car) {
 
 
-            co2Consumption*=vehicle.getAverageConsumption();
+            co2Consumption =  co2Consumption*vehicle.getAverageConsumption();
 
-            double consumption = distance * co2Consumption * slope * factorOfRouteType;
+            double consumption =  distance * co2Consumption * slope * factorOfRouteType;
             int i=1;
             if((i=vehicle.getCargo()%100)>0)
                 consumption=consumption +(0.5*i);
