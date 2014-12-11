@@ -29,10 +29,11 @@ public class TripCalculatorTest {
     }
 
     @Test
-    public void testIfPatrolWith20kmReturns0Point53WhenSlopeIs1Return0Point53() {
-        Car car = new Car(1.1, 50, FuelType.PATROL);
+    public void testIfPatrolWith20kmReturns0Point53WhenSlopeIs1Return1Point0192519199999999() {
+        // km x CO2 x slope x Factor of Route type
+        Car car = new Car(1.1, 1, FuelType.PATROL);
         Route route = new Route(20, 1, 0, RouteType.HIGHWAY);
-        System.out.println(this.cal.calculateCo2Consumption(route, car));
+        assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(1.0192519199999999));
     }
 
     @Test
