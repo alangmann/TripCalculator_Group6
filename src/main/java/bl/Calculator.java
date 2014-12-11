@@ -48,39 +48,41 @@ public class Calculator {
                 factorOfRouteType = 2;
                 break;
         }
+        if (slope < -5) {
+            return 0;
+        }
+        if (slope == 0) slope = 1;
+
+        switch (vehicle.getTypeOfFuel()) {
+            case PATROL:
+                co2Consumption = 0.0265;
+                break;
+            case DIESEL:
+                co2Consumption = 0.0236;
+                break;
+        }
 
         if (vehicle instanceof Car) {
 
-            if (slope < -5) {
-                return 0;
-            }
-            if (slope == 0) slope = 1;
-
-            switch (vehicle.getTypeOfFuel()) {
-                case PATROL:
-                    co2Consumption = 0.0265;
-                    break;
-                case DIESEL:
-                    co2Consumption = 0.0236;
-                    break;
-            }
 
             co2Consumption*=vehicle.getAverageConsumption();
 
             double consumption = distance * co2Consumption * slope * factorOfRouteType;
+            int i=1;
+            if((i=vehicle.getCargo()%100)>0)
+                consumption=consumption +(0.5*i);
             return consumption;
         }
 
         else if(vehicle instanceof Truck) {
             Truck truck = (Truck)vehicle;
-            switch (truck.getTypeOfFuel()) {
-                case PATROL: co2Consumption=0.0265*0.1; break;
-                case DIESEL: co2Consumption=0.0236*0.1; break;
-            }
 
             double consumption= distance*co2Consumption*slope*factorOfRouteType;
             if(truck.isAdBlue())
                 consumption-=(consumption*0.07);
+            int i=1;
+            if((i=vehicle.getCargo()%100)>0)
+                consumption=consumption +(0.05*i);
             return consumption;
         }
         else return -1;
