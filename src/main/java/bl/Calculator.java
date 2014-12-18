@@ -16,7 +16,8 @@ public class Calculator {
         return CO2_Consumption_Diesel;
     }
 
-    public void setCO2_Consumption_Diesel(double CO2_Consumption_Diesel) {
+    public void setCO2_Consumption_Diesel(double CO2_Consumption_Diesel) throws IllegalArgumentException {
+        if (CO2_Consumption_Diesel < 0) throw new IllegalArgumentException("Consumption < 0!");
         this.CO2_Consumption_Diesel = CO2_Consumption_Diesel;
     }
 
@@ -63,8 +64,6 @@ public class Calculator {
         }
 
         if (vehicle instanceof Car) {
-
-
             co2Consumption =  co2Consumption*vehicle.getAverageConsumption();
 
             double consumption =  distance * co2Consumption * slope * factorOfRouteType;

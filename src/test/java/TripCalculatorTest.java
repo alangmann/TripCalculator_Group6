@@ -36,20 +36,4 @@ public class TripCalculatorTest {
         assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(1.0192519199999999));
     }
 
-    @Test
-    public void testIfDieselWithSlopeLower5PercentReturns4Point37727224() {
-        Route route = new Route(12, -6, 0, RouteType.HIGHWAY);
-        Car car = new Car(12.2, 1, FuelType.DIESEL);
-
-        double erg = cal.calculateCo2Consumption(route, car);
-        assertThat(erg, equalTo(0.0));
-    }
-
-    @Test
-    public void testIfDieselWithSlope0Returns0Point2832() {
-        Route route = new Route(12, 0, 0, RouteType.HIGHWAY);
-        Vehicle veh = new Vehicle(12.2, 1, FuelType.DIESEL);
-        assertThat(cal.calculateCo2Consumption(route, veh), equalTo(0.2832));
-    }
-
 }
