@@ -36,4 +36,32 @@ public class TripCalculatorTest {
         assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(1.0192519199999999));
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void testIfCarWithConsumptionSmaller0ReturnError() {
+        Car car = new Car(-1.1, 1, FuelType.PATROL);
+        Route route = new Route(20, 1, 0, RouteType.HIGHWAY);
+        this.cal.setCO2_Consumption_Diesel(car.getAverageConsumption());
+    }
+
+    @Test
+    public void testIfAverageConsumptionCanSetTo12() {
+        Car car = new Car(1.1, 1, FuelType.PATROL);
+        this.cal.setCO2_Consumption_Diesel(car.getAverageConsumption());
+        assertThat(this.cal.getCO2_Consumption_Diesel(), equalTo(car.getAverageConsumption()));
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testIfCarWithPetrolConsumptionSmallerZeroReturnsError() {
+        Car car = new Car(-1.1, 1, FuelType.PATROL);
+        this.cal.setCO2_Consumption_Petrol(car.getAverageConsumption());
+    }
+
+    @Test
+    public void testIfAverageConsumptionCanBeSet() {
+        Car car = new Car(1.1, 1, FuelType.PATROL);
+        this.cal.setCO2_Consumption_Petrol(car.getAverageConsumption());
+        assertThat(this.cal.getCO2_Consumption_Petrol(), equalTo(car.getAverageConsumption()));
+
+    }
+
 }

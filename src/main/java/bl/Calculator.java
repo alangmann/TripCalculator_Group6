@@ -23,9 +23,10 @@ public class Calculator {
 
     public double getCO2_Consumption_Petrol() {
         return CO2_Consumption_Petrol;
-    }
+}
 
-    public void setCO2_Consumption_Petrol(double CO2_Consumption_Petrol) {
+    public void setCO2_Consumption_Petrol(double CO2_Consumption_Petrol) throws IllegalArgumentException{
+        if (CO2_Consumption_Petrol < 0) throw new IllegalArgumentException("Consumption < 0!");
         this.CO2_Consumption_Petrol = CO2_Consumption_Petrol;
     }
 
