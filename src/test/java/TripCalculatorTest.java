@@ -61,7 +61,20 @@ public class TripCalculatorTest {
         Car car = new Car(1.1, 1, FuelType.PATROL);
         this.cal.setCO2_Consumption_Petrol(car.getAverageConsumption());
         assertThat(this.cal.getCO2_Consumption_Petrol(), equalTo(car.getAverageConsumption()));
+    }
 
+    @Test
+    public void testIfCarOnGravelRoadWithConsumption2Returns2Point3881888() {
+        Car car = new Car(2, 1, FuelType.PATROL);
+        Route route = new Route(20, 1, 0, RouteType.GRAVELROAD);
+        assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(2.3881888));
+    }
+
+    @Test
+    public void testIfCarOnCountryRoadWithConsumption2Returns1Point63291328() {
+        Car car = new Car(2, 1, FuelType.PATROL);
+        Route route = new Route(20, 1, 0, RouteType.COUNTRYROAD);
+        assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(1.63291328));
     }
 
 }
