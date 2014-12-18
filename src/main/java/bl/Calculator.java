@@ -37,7 +37,7 @@ public class Calculator {
 
         double distance = route.getDistance();
         double co2Consumption=1;
-        double slope=(route.getSlope()/100) / 100 + 1;
+        double slope=route.getSlope();
         double factorOfRouteType = 1;
 
         switch (route.getTypeOfRoute()) {
@@ -54,7 +54,7 @@ public class Calculator {
             return 0;
         }
         if (slope == 0) slope = 1;
-
+        slope = (route.getSlope()/100) / 100 + 1;
         switch (vehicle.getTypeOfFuel()) {
             case PATROL:
                 co2Consumption = 0.0236;

@@ -2,10 +2,8 @@ package bl;
 
 import enums.RouteType;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.time.DayOfWeek;
 import java.util.LinkedList;
 
 /**
@@ -14,10 +12,12 @@ import java.util.LinkedList;
 public class RouteBL
 {
     private LinkedList<Route> routes;
+    private LinkedList<Price> prices;
 
     public RouteBL()
     {
         this.routes = new LinkedList<Route>();
+        this.prices = new LinkedList<>();
     }
 
     public void setRoutes(LinkedList<Route> routes) {
@@ -70,7 +70,17 @@ public class RouteBL
         return routes;
     }
 
+    public void readSpritDB() throws IOException {
+        String pfad = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator
+                + "resources" + File.separator +"sprit_db.csv";
+        BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
 
+        String zeile="";
+        while((zeile = br.readLine()) != null) {
+            String[] spl = zeile.split(";");
+        }
+
+    }
 
 
 }
