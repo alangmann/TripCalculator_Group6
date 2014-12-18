@@ -77,4 +77,11 @@ public class TripCalculatorTest {
         assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(1.63291328));
     }
 
+    @Test
+    public void testIfCarOnCountryRoadWithSlopeSmallerMinus5ReturnsZero() {
+        Car car = new Car(2, 1, FuelType.PATROL);
+        Route route = new Route(20, -6, 0, RouteType.COUNTRYROAD);
+        assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(0.0));
+    }
+
 }
