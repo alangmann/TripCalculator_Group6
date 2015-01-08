@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  * Created by Veronika on 27.11.2014.
@@ -106,7 +107,7 @@ public class RouteBL
 
     public Price getPriceOfAktualDay() {
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.GERMAN);
         String day = sdf.format(d);
 
         switch(day) {
