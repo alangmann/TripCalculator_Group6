@@ -244,7 +244,7 @@ public class GUI extends JFrame
             fullPrice += this.m_Calculator.calculateTotalCostOfRoute(r,v, DayOfTheWeek.Thursday, price );
         }
 
-        this.lb_routeCost_result.setText("Price: "+ fullPrice );
+        this.lb_routeCost_result.setText("Price: "+ String.format("%.2f", fullPrice));
     }
 
     private void onCalculateCO2() {
@@ -263,7 +263,7 @@ public class GUI extends JFrame
                     sum += this.m_Calculator.calculateCo2Consumption(r, car);
                 }
 
-                this.lb_co2_result.setText("Result: " + sum);
+                this.lb_co2_result.setText("CO2 Consoumption: " + String.format("%.2f", sum));
                 this.calculatePrice(car);
 
         }
@@ -279,7 +279,7 @@ public class GUI extends JFrame
                 sum += this.m_Calculator.calculateCo2Consumption(r, tr);
             }
 
-            this.lb_co2_result.setText("Result: " + sum);
+            this.lb_co2_result.setText("CO2 Consoumption: " + String.format("%.2f", sum));
             this.calculatePrice(tr);
         }
         } catch(Exception e) {

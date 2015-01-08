@@ -90,6 +90,7 @@ public class Calculator {
     }
 
     public double calculateTotalCostOfRoute(Route route, Vehicle vehicle, DayOfTheWeek dayOfTheWeek, Price price) throws IllegalArgumentException {
+
         if (route == null) throw new IllegalArgumentException("Error! No Route!");
         if (vehicle == null) throw new IllegalArgumentException("Error! No Vehicle!");
         if (dayOfTheWeek == null) throw new IllegalArgumentException("Error! No day of the week!");
