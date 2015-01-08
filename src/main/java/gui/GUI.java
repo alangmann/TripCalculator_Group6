@@ -37,7 +37,7 @@ public class GUI extends JFrame
         super("Trip Calculator");
         this.m_Calculator = new Calculator();
         initComponents();
-        setSize(545, 310);
+        setSize(545, 360);
         setLocationRelativeTo(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDesign("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -82,13 +82,14 @@ public class GUI extends JFrame
 
         panel_south = new JPanel(new GridLayout(2, 1));
 
+        panel_south_results = new JPanel(new GridLayout(1, 2));
 
         panel_center = new JPanel(new GridLayout(1, 2));
 
-        panel_center_car = new JPanel(new GridLayout(texts_car.length, 2, 0, 10));
+        panel_center_car = new JPanel(new GridLayout(texts_car.length, 2, 0, 35));
         panel_center_car.setBorder(new TitledBorder("Car"));
 
-        panel_center_truck = new JPanel(new GridLayout(texts_truck.length, 2, 0,0));
+        panel_center_truck = new JPanel(new GridLayout(texts_truck.length, 2, 0,5));
         panel_center_truck.setBorder(new TitledBorder("Truck"));
 
 
@@ -132,7 +133,10 @@ public class GUI extends JFrame
             lbs_truck[i] = lb;
         }
 
-        lb_co2_result = new JLabel("Result: ");
+        lb_co2_result = new JLabel("CO2 Consumption: ");
+        lb_co2_result.setHorizontalAlignment(JLabel.CENTER);
+        lb_routeCost_result = new JLabel("Route Cost: ");
+        lb_routeCost_result.setHorizontalAlignment(JLabel.CENTER);
 
         //JButton
         bt_calc = new JButton("Calculate");
@@ -167,7 +171,7 @@ public class GUI extends JFrame
 
         //Adding to Panel South
         panel_south.add(bt_calc);
-        panel_south.add(lb_co2_result);
+        panel_south.add(panel_south_results);
 
         //Adding to Panel Center
         panel_center.add(panel_center_car);
@@ -180,6 +184,10 @@ public class GUI extends JFrame
         panel_center_car.add(cb_car_fuelTypes);
         panel_center_car.add(lbs_car[2]);
         panel_center_car.add(tf_car_cargo);
+
+        //Adding to Panel South Results
+        panel_south_results.add(lb_co2_result);
+        panel_south_results.add(lb_routeCost_result);
 
         //Adding to Panel Center Truck
         //"Fuel Consumption", "Fuel Type", "Cargo", "Axles", "adBlue"
@@ -224,6 +232,7 @@ public class GUI extends JFrame
     }
 
     private void onCalculateCO2() {
+
         try {
         if (rb_car.isSelected()) {
 
@@ -271,6 +280,7 @@ public class GUI extends JFrame
     private JPanel panel_north;
     private JPanel panel_center;
     private JPanel panel_south;
+    private JPanel panel_south_results;
     private JPanel panel_center_car;
     private JPanel panel_center_truck;
 
@@ -289,6 +299,7 @@ public class GUI extends JFrame
     private JLabel[] lbs_car;
     private JLabel[] lbs_truck;
     private JLabel lb_co2_result;
+    private JLabel lb_routeCost_result;
 
 
     //JTextFields
