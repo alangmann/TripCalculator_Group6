@@ -2,6 +2,7 @@
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import bl.*;
+import enums.DayOfTheWeek;
 import enums.FuelType;
 import enums.RouteType;
 import org.junit.Assert;
@@ -80,6 +81,7 @@ public class TripCalculatorTest {
         Car car = new Car(2, 1, FuelType.PATROL);
         Route route = new Route(20, -6, 0, RouteType.COUNTRYROAD);
         assertThat(this.cal.calculateCo2Consumption(route, car), equalTo(0.0));
+        System.out.println();
     }
 
     @Test
@@ -95,6 +97,13 @@ public class TripCalculatorTest {
         Truck truck = new Truck(1.1, 1, FuelType.PATROL, 4, false);
         Route route = new Route(20, 1, 0, RouteType.HIGHWAY);
         assertThat(this.cal.calculateCo2Consumption(route, truck), equalTo(0.5220471999999999));
+    }
+
+    @Test
+    public void testIfTruck10km45AvConsumption5EuroSpecialFeesReturns31Point26() {
+        Truck truck = new Truck(45, 20000, FuelType.DIESEL);
+        Route route = new Route(10, 1, 5, RouteType.HIGHWAY);
+        assertThat(this.cal.calculateTotalCostOfRoute(route, truck, DayOfTheWeek.Monday), equalTo(31.26));
     }
 
 
