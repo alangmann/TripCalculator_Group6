@@ -39,4 +39,9 @@ public class Price {
     public void setM_DieselPrice(double m_DieselPrice) {
         this.m_DieselPrice = m_DieselPrice;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Day: " + this.day + ", Petrol Price: " + this.m_PetrolPrice + ", Diesel Price: " + this.m_DieselPrice);
+    }
 }
