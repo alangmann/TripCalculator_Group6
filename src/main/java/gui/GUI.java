@@ -1,6 +1,7 @@
 package gui;
 
 import bl.*;
+import enums.DayOfTheWeek;
 import enums.FuelType;
 
 import javax.swing.*;
@@ -235,8 +236,15 @@ public class GUI extends JFrame
         }
     }
 
-    private void calculatePrice() {
+    private void calculatePrice(Vehicle v) {
         Price price = this.routeBL.getPriceOfAktualDay();
+
+        double fullPrice = 0;
+        for (Route r : this.routes) {
+            fullPrice += this.m_Calculator.calculateTotalCostOfRoute(r,v, DayOfTheWeek.Thursday, price );
+        }
+
+        this.lb_routeCost_result.setText("Price: "+ fullPrice );
     }
 
     private void onCalculateCO2() {
@@ -256,6 +264,7 @@ public class GUI extends JFrame
                 }
 
                 this.lb_co2_result.setText("Result: " + sum);
+                this.calculatePrice(car);
 
         }
         else {
@@ -271,6 +280,7 @@ public class GUI extends JFrame
             }
 
             this.lb_co2_result.setText("Result: " + sum);
+            this.calculatePrice(tr);
         }
         } catch(Exception e) {
             this.lb_co2_result.setText("There was an error!");

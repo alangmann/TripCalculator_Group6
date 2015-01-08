@@ -94,8 +94,19 @@ public class Calculator {
         if (vehicle == null) throw new IllegalArgumentException("Error! No Vehicle!");
         if (dayOfTheWeek == null) throw new IllegalArgumentException("Error! No day of the week!");
 
+        double distance = route.getDistance();
+        double averageConsumption = vehicle.getAverageConsumption();
+        double average = 0;
+        if (vehicle.getTypeOfFuel() == FuelType.DIESEL) {
+            average = (averageConsumption/100) * price.getM_DieselPrice();
+        }
+        else if (vehicle.getTypeOfFuel() == FuelType.PATROL) {
+            average = (averageConsumption/100) * price.getM_PetrolPrice();
+        }
 
-        return 0;
+        double toPay = distance * average + route.getSpecialFee();
+
+        return toPay;
     }
 
 
