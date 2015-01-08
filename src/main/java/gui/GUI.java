@@ -59,7 +59,11 @@ public class GUI extends JFrame
 
         try {
             this.routeBL.readSpritDB("sprit_db.csv");
+
             this.prices = this.routeBL.getPrices();
+            for (Price p : prices) {
+                System.out.println(p.toString());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -229,6 +233,10 @@ public class GUI extends JFrame
         {
             onCalculateCO2();
         }
+    }
+
+    private void calculatePrice() {
+        Price price = this.routeBL.getPriceOfAktualDay();
     }
 
     private void onCalculateCO2() {

@@ -8,6 +8,9 @@ import enums.RouteType;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.LinkedList;
+
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -99,10 +102,11 @@ public class TripCalculatorTest {
     }
 
     @Test
-    public void testIfTruck10km45AvConsumption5EuroSpecialFeesReturns31Point26() {
+    public void testIfTruck10km45AvConsumption5EuroSpecialFeesReturns31Point26() throws IOException {
         Truck truck = new Truck(45, 20000, FuelType.DIESEL);
         Route route = new Route(10, 1, 5, RouteType.HIGHWAY);
-        assertThat(this.cal.calculateTotalCostOfRoute(route, truck, DayOfTheWeek.Monday), equalTo(31.26));
+        Price p = new Price(DayOfTheWeek.Thursday,1.315 , 1.315);
+        assertThat(this.cal.calculateTotalCostOfRoute(route, truck, DayOfTheWeek.Monday, prices), equalTo(31.26));
     }
 
 

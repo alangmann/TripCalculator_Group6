@@ -4,7 +4,9 @@ import enums.DayOfTheWeek;
 import enums.RouteType;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -85,6 +87,7 @@ public class RouteBL
                 case "Monday": day = DayOfTheWeek.Monday;
                 case "Tuesday": day = DayOfTheWeek.Tuesday;
                 case "Wednesday": day=DayOfTheWeek.Wednesday;
+
                 case "Thursday": day = DayOfTheWeek.Thursday;
                 case "Friday": day = DayOfTheWeek.Friday;
                 case "Saturday": day = DayOfTheWeek.Saturday;
@@ -99,6 +102,23 @@ public class RouteBL
         }
         return true;
 
+    }
+
+    public Price getPriceOfAktualDay() {
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        String day = sdf.format(d);
+
+        switch(day) {
+            case "Montag": return this.prices.get(0);
+            case "Dienstag": return this.prices.get(1);
+            case "Mittwoch": return this.prices.get(2);
+            case "Donnerstag": return this.prices.get(3);
+            case "Freitag": return this.prices.get(4);
+            case "Samstag": return this.prices.get(5);
+            case "Sonntag": return this.prices.get(6);
+        }
+        return null;
     }
 
     public LinkedList<Price> getPrices() { return this.prices; }
