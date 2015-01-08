@@ -102,12 +102,19 @@ public class TripCalculatorTest {
     }
 
     @Test
-    public void testIfTruck10km45AvConsumption5EuroSpecialFeesReturns31Point26() throws IOException {
+    public void testIfTruck10km45AvConsumption5EuroSpecialFeesReturns10Point9175() throws IOException {
         Truck truck = new Truck(45, 20000, FuelType.DIESEL);
         Route route = new Route(10, 1, 5, RouteType.HIGHWAY);
         Price p = new Price(DayOfTheWeek.Thursday,1.315 , 1.315);
-        assertThat(this.cal.calculateTotalCostOfRoute(route, truck, DayOfTheWeek.Monday, p), equalTo(31.26));
+        assertThat(this.cal.calculateTotalCostOfRoute(route, truck, DayOfTheWeek.Monday, p), equalTo(10.9175));
     }
 
+    @Test
+    public void testIfTruckWithPetrol10km45AvConsumption5EuroSpecialFeesReturns10Point9175() throws IOException {
+        Truck truck = new Truck(45, 20000, FuelType.PATROL);
+        Route route = new Route(10, 1, 5, RouteType.HIGHWAY);
+        Price p = new Price(DayOfTheWeek.Thursday,1.315 , 1.315);
+        assertThat(this.cal.calculateTotalCostOfRoute(route, truck, DayOfTheWeek.Monday, p), equalTo(10.9175));
+    }
 
 }
