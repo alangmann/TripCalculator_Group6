@@ -20,8 +20,20 @@ public class RouteBLTest {
     }
 
     @Test
-    public void testIfReadOutOfFileReturnsNoError() throws IOException {
+     public void testIfReadOutOfFileReturnsNoError() throws IOException {
         boolean load = m_RouteBL.loadRoute();
         Assert.assertThat(load, equalTo(true));
+    }
+
+    @Test
+    public void testIfReadOutOfFileSpritsReturnsNoError() throws IOException {
+       boolean load = m_RouteBL.readSpritDB("sprit_db.csv");
+        Assert.assertThat(load,equalTo(true));
+    }
+
+    @Test (expected = IOException.class)
+    public void testIfReadOutOfFileSpritsFails() throws IOException
+    {
+        boolean load = m_RouteBL.readSpritDB("sprit");
     }
 }

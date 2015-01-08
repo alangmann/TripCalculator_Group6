@@ -1,5 +1,6 @@
 package bl;
 
+import enums.DayOfTheWeek;
 import enums.RouteType;
 
 import java.io.*;
@@ -70,17 +71,36 @@ public class RouteBL
         return routes;
     }
 
-    public void readSpritDB() throws IOException {
+    public boolean readSpritDB(String filename) throws IOException {
         String pfad = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator
-                + "resources" + File.separator +"sprit_db.csv";
+                + "resources" + File.separator + filename;
         BufferedReader br = new BufferedReader(new FileReader(new File(pfad)));
-
+        br.readLine();
         String zeile="";
         while((zeile = br.readLine()) != null) {
+            zeile = zeile.replace(",", ".");
             String[] spl = zeile.split(";");
+            DayOfTheWeek day = null;
+            switch(spl[0]) {
+                case "Monday": day = DayOfTheWeek.Monday;
+                case "Tuesday": day = DayOfTheWeek.Tuesday;
+                case "Wednesday": day=DayOfTheWeek.Wednesday;
+                case "Thursday": day = DayOfTheWeek.Thursday;
+                case "Friday": day = DayOfTheWeek.Friday;
+                case "Saturday": day = DayOfTheWeek.Saturday;
+                case "Sunday": day = DayOfTheWeek.Sunday;
+            }
+
+            double priceDiesel = Double.parseDouble(spl[1]);
+            double pricePetrol = Double.parseDouble(spl[2]);
+            Price pr = new Price(day, pricePetrol, priceDiesel);
+            this.prices.add(pr);
+
         }
+        return true;
 
     }
 
+    public LinkedList<Price> getPrices() { return this.prices; }
 
 }

@@ -19,6 +19,7 @@ public class GUI extends JFrame
 {
     private RouteBL routeBL;
     private LinkedList<Route> routes = new LinkedList<Route>();
+    private LinkedList<Price> prices = new LinkedList<Price>();
     private Calculator m_Calculator;
 
     private String[] texts_car =
@@ -56,6 +57,12 @@ public class GUI extends JFrame
             System.out.println(r.toString());
         }
 
+        try {
+            this.routeBL.readSpritDB("sprit_db.csv");
+            this.prices = this.routeBL.getPrices();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

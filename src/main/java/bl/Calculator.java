@@ -1,5 +1,6 @@
 package bl;
 
+import enums.DayOfTheWeek;
 import enums.FuelType;
 import enums.RouteType;
 import java.io.*;
@@ -88,8 +89,8 @@ public class Calculator {
         else return -1;
     }
 
-    public void calculateTotalCostOfRoute(Route route, Vehicle vehicle, String dayOfTheWeek) {
-
+    public double calculateTotalCostOfRoute(Route route, Vehicle vehicle, DayOfTheWeek dayOfTheWeek) {
+    return 0;
     }
 
 
