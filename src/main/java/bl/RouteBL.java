@@ -85,14 +85,14 @@ public class RouteBL
             String[] spl = zeile.split(";");
             DayOfTheWeek day = null;
             switch(spl[0]) {
-                case "Monday": day = DayOfTheWeek.Monday;
-                case "Tuesday": day = DayOfTheWeek.Tuesday;
-                case "Wednesday": day=DayOfTheWeek.Wednesday;
+                case "Monday": day = DayOfTheWeek.Monday;break;
+                case "Tuesday": day = DayOfTheWeek.Tuesday;    break;
+                case "Wednesday": day=DayOfTheWeek.Wednesday;        break;
 
-                case "Thursday": day = DayOfTheWeek.Thursday;
-                case "Friday": day = DayOfTheWeek.Friday;
-                case "Saturday": day = DayOfTheWeek.Saturday;
-                case "Sunday": day = DayOfTheWeek.Sunday;
+                case "Thursday": day = DayOfTheWeek.Thursday;break;
+                case "Friday": day = DayOfTheWeek.Friday;break;
+                case "Saturday": day = DayOfTheWeek.Saturday;break;
+                case "Sunday": day = DayOfTheWeek.Sunday;break;
             }
 
             double priceDiesel = Double.parseDouble(spl[1]);
