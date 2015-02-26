@@ -21,7 +21,7 @@ public class RouteBL
     public RouteBL()
     {
         this.routes = new LinkedList<Route>();
-        this.prices = new LinkedList<>();
+        this.prices = new LinkedList<Price>();
     }
 
     public void setRoutes(LinkedList<Route> routes) {
@@ -40,7 +40,7 @@ public class RouteBL
         {
             while((line=br.readLine())!=null)
             {
-                line=line.replaceAll(",",".");
+                line=line.replaceAll("," , ".");
 
                 String[] splits = line.split(";");
                 //45;96,8;CountryRoad;0
@@ -84,15 +84,15 @@ public class RouteBL
             zeile = zeile.replace(",", ".");
             String[] spl = zeile.split(";");
             DayOfTheWeek day = null;
-            switch(spl[0]) {
-                case "Monday": day = DayOfTheWeek.Monday;break;
-                case "Tuesday": day = DayOfTheWeek.Tuesday;    break;
-                case "Wednesday": day=DayOfTheWeek.Wednesday;        break;
+            switch(dayToInt(spl[0])) {
+                case 0: day = DayOfTheWeek.Monday;break;
+                case 1: day = DayOfTheWeek.Tuesday;    break;
+                case 2: day=DayOfTheWeek.Wednesday;        break;
 
-                case "Thursday": day = DayOfTheWeek.Thursday;break;
-                case "Friday": day = DayOfTheWeek.Friday;break;
-                case "Saturday": day = DayOfTheWeek.Saturday;break;
-                case "Sunday": day = DayOfTheWeek.Sunday;break;
+                case 3: day = DayOfTheWeek.Thursday;break;
+                case 4: day = DayOfTheWeek.Friday;break;
+                case 5: day = DayOfTheWeek.Saturday;break;
+                case 6: day = DayOfTheWeek.Sunday;break;
             }
 
             double priceDiesel = Double.parseDouble(spl[1]);
@@ -105,19 +105,48 @@ public class RouteBL
 
     }
 
+    public int dayToInt(String day)
+    {
+        if(day.equals("Montag"))
+        {
+          return 0;
+        } else if(day.equals("Dienstag"))
+        {
+            return 1;
+        }else if(day.equals("Mittwoch"))
+        {
+            return 2;
+        }else if(day.equals("Donnerstag"))
+        {
+            return 3;
+        }else if(day.equals("Freitag"))
+        {
+            return 4;
+        }else if(day.equals("Samstag"))
+        {
+            return 5;
+        }else if(day.equals("Sonntag"))
+        {
+            return 6;
+        }
+        return -1;
+
+    }
+
     public Price getPriceOfAktualDay() {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.GERMAN);
         String day = sdf.format(d);
 
-        switch(day) {
-            case "Montag": return this.prices.get(0);
-            case "Dienstag": return this.prices.get(1);
-            case "Mittwoch": return this.prices.get(2);
-            case "Donnerstag": return this.prices.get(3);
-            case "Freitag": return this.prices.get(4);
-            case "Samstag": return this.prices.get(5);
-            case "Sonntag": return this.prices.get(6);
+        switch(dayToInt(day))
+        {
+            case 0: return this.prices.get(0);
+            case 1: return this.prices.get(1);
+            case 2: return this.prices.get(2);
+            case 3: return this.prices.get(3);
+            case 4: return this.prices.get(4);
+            case 5: return this.prices.get(5);
+            case 6: return this.prices.get(6);
         }
         return null;
     }

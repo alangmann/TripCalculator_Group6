@@ -11,22 +11,26 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class RouteBLTest {
+public class RouteBLTest
+{
     private RouteBL m_RouteBL;
 
     @Before
-    public void init() {
+    public void init()
+    {
         this.m_RouteBL = new RouteBL();
     }
 
     @Test
-     public void testIfReadOutOfFileReturnsNoError() throws IOException {
+    public void testIfReadOutOfFileReturnsNoError() throws IOException
+    {
         boolean load = m_RouteBL.loadRoute();
         Assert.assertThat(load, equalTo(true));
     }
 
     @Test
-    public void testIfReadOutOfFileSpritsReturnsNoError() throws IOException {
+    public void testIfReadOutOfFileSpritsReturnsNoError() throws IOException
+    {
        boolean load = m_RouteBL.readSpritDB("sprit_db.csv");
         Assert.assertThat(load,equalTo(true));
     }

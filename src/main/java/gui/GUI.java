@@ -5,13 +5,13 @@ import enums.DayOfTheWeek;
 import enums.FuelType;
 
 import javax.swing.*;
+import java.util.LinkedList;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.LinkedList;
 
 /**
  * Created by Jule on 13.11.2014.
@@ -42,10 +42,6 @@ public class GUI extends JFrame
         setLocationRelativeTo(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDesign("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-
-
-
-
 
 
         routeBL = new RouteBL();
