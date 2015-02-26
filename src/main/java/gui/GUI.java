@@ -3,7 +3,13 @@ package gui;
 import bl.*;
 import enums.DayOfTheWeek;
 import enums.FuelType;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.*;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.swing.*;
 import java.util.LinkedList;
 import javax.swing.border.EmptyBorder;
@@ -16,12 +22,19 @@ import java.io.IOException;
 /**
  * Created by Jule on 13.11.2014.
  */
+
+
+@org.springframework.stereotype.Component("GUI")
 public class GUI extends JFrame
 {
+
+    @Resource(name="RouteBL")
     private RouteBL routeBL;
     private LinkedList<Route> routes = new LinkedList<Route>();
-    private LinkedList<Price> prices = new LinkedList<Price>();
+    @Resource(name="Calculator")
     private Calculator m_Calculator;
+    private LinkedList<Price> prices = new LinkedList<Price>();
+
 
     private String[] texts_car =
             {
@@ -33,10 +46,11 @@ public class GUI extends JFrame
                   "Fuel Consumption", "Fuel Type", "Cargo", "Axles", "adBlue"
             };
 
-    public GUI()
+    @PostConstruct
+    public void setUpGUI()
     {
-        super("Trip Calculator");
-        this.m_Calculator = new Calculator();
+
+
         initComponents();
         setSize(545, 360);
         setLocationRelativeTo(this);
@@ -44,7 +58,7 @@ public class GUI extends JFrame
         setDesign("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 
 
-        routeBL = new RouteBL();
+
         try {
             routeBL.loadRoute();
         } catch (IOException e) {
@@ -68,6 +82,8 @@ public class GUI extends JFrame
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        setUpGUI();
 
     }
 
@@ -290,7 +306,9 @@ public class GUI extends JFrame
 
     public static void main(String[] args)
     {
-        new GUI().setVisible(true);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-di-sample-annotation-context.xml");
+        JFrame gui = context.getBean("GUI", JFrame.class);
+        gui.setVisible(true);
     }
 
     //JPanels
