@@ -1,11 +1,12 @@
 package bl;
 
 import enums.FuelType;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by Jule on 13.11.2014.
  */
-public class                                                                                                                                                                Truck extends Vehicle
+public class Truck extends Vehicle
 {
     private int axles;
     private boolean adBlue;

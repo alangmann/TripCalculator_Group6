@@ -3,12 +3,16 @@ package bl;
 import enums.DayOfTheWeek;
 import enums.FuelType;
 import enums.RouteType;
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 import java.util.LinkedList;
 
 /**
  * Created by dominik on 20.11.2014.
  */
+
+@Component("Calculator")
 public class Calculator {
     private double CO2_Consumption_Diesel;
     private double CO2_Consumption_Petrol;

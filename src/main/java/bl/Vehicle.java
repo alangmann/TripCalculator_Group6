@@ -1,6 +1,7 @@
 package bl;
 
 import enums.FuelType;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by Jule on 13.11.2014.

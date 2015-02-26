@@ -2,6 +2,8 @@ package bl;
 
 import enums.DayOfTheWeek;
 import enums.RouteType;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,7 @@ import java.util.Locale;
 /**
  * Created by Veronika on 27.11.2014.
  */
+@Component("RouteBL")
 public class RouteBL
 {
     private LinkedList<Route> routes;

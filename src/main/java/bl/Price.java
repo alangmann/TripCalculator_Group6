@@ -1,6 +1,7 @@
 package bl;
 
 import enums.DayOfTheWeek;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by dominik on 18.12.2014.
