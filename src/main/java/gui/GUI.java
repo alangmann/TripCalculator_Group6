@@ -5,6 +5,7 @@ import enums.DayOfTheWeek;
 import enums.FuelType;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.swing.*;
@@ -80,7 +81,7 @@ public class GUI extends JFrame
             e.printStackTrace();
         }
 
-        setUpGUI();
+
 
     }
 
