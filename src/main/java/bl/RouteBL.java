@@ -3,12 +3,9 @@ package bl;
 import enums.DayOfTheWeek;
 import enums.RouteType;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Locale;

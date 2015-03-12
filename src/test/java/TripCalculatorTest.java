@@ -5,14 +5,9 @@ import bl.*;
 import enums.DayOfTheWeek;
 import enums.FuelType;
 import enums.RouteType;
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;

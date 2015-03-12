@@ -3,10 +3,7 @@ package gui;
 import bl.*;
 import enums.DayOfTheWeek;
 import enums.FuelType;
-import org.junit.runner.RunWith;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;

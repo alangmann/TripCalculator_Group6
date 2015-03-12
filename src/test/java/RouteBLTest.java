@@ -3,7 +3,6 @@
  */
 import static org.hamcrest.CoreMatchers.equalTo;
 import bl.RouteBL;
-import bl.Route;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.LinkedList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/spring-di-sample-annotation-context.xml")
